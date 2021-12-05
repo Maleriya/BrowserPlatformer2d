@@ -50,4 +50,19 @@ MonoBehaviour:
   - Track: 2
     Sprites:
     - {fileID: 21300000, guid: ac275666a28f0fa40876859dbb51e5e1, type: 3}
+  - Track: 4
+    Sprites:
+    - {fileID: -8408680621071802262, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+    - {fileID: 2020563912116090603, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+    - {fileID: 3849136173088306821, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+    - {fileID: 4028242178453425959, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+    - {fileID: 1668037937834423401, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+    - {fileID: -7484286492027541573, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+    - {fileID: -8219087091140627760, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+    - {fileID: 1383575054225115981, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+    - {fileID: 5125728163368428710, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+    - {fileID: -8166396994557932214, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+    - {fileID: -71587961595109507, guid: f9ce12747dd8ffb4ebe5f14ab04f32b1, type: 3}
+  - Track: 3
+    Sprites:
     - {fileID: 21300002, guid: ac275666a28f0fa40876859dbb51e5e1, type: 3}

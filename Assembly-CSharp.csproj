@@ -54,11 +54,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Lessons.cs" />
+    <Compile Include="Assets\Scripts\ParalaxManager.cs" />
     <Compile Include="Assets\Scripts\SpriteAnimator.cs" />
+    <Compile Include="Assets\Scripts\Views\BlockView.cs" />
     <Compile Include="Assets\Scripts\SpriteAnimationsConfig.cs" />
     <Compile Include="Assets\Scripts\Views\CharacterView.cs" />
-    <Compile Include="Assets\Scripts\Views\BlockView.cs" />
-    <Compile Include="Assets\Scripts\ParalaxManager.cs" />
+    <Compile Include="Assets\Scripts\Utils.cs" />
+    <Compile Include="Assets\Scripts\MainHeroWalker.cs" />
+    <Compile Include="Assets\Scripts\AimingMuzzle.cs" />
+    <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\BulletView.cs" />
+    <Compile Include="Assets\Scripts\BulletsEmitter.cs" />
+    <Compile Include="Assets\Scripts\LevelObjectView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

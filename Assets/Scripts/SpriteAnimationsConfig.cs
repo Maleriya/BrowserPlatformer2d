@@ -6,7 +6,9 @@ public enum Track
 {
     idle,
     run,
-    jump
+    jumpUp,
+    jumpDown,
+    blink
 }
 
 [CreateAssetMenu(fileName = "SpriteAnimationsCnfg", menuName = "Configs/SpriteAnimationsCnfg", order = 1)]
