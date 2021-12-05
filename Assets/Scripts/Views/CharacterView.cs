@@ -1,6 +1,5 @@
-using UnityEngine;
 
-public class CharacterView : MonoBehaviour
+public class CharacterView : LevelObjectView
 {
-    public SpriteRenderer SpriteRenderer;
+    
 }

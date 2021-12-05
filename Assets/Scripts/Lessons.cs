@@ -13,7 +13,13 @@ public class Lessons : MonoBehaviour
     private Transform _backGround;
     [SerializeField]
     private CharacterView _characterView;
-
+    private MainHeroWalker _mainHeroWalker;
+    [SerializeField]
+    private Transform _muzzleTransform;
+    [SerializeField]
+    private System.Collections.Generic.List<BulletView> _bullets;
+    private AimingMuzzle _aimingMuzzle;
+    private BulletsEmitter _bulletsEmitter;
     //Ссылки на логические объекты, которые мы кешируем, чтобы потом использовать:
     //например, менеджер анимаций или менеджер параллакса, плюс ссылки на загруженные ресурсы.
     private SpriteAnimator _spriteAnimator;
@@ -27,10 +33,12 @@ public class Lessons : MonoBehaviour
         _spriteAnimator = new SpriteAnimator(config);
         //Место создания и связывания логических объектов, точка сборки проекта.
 
-        _spriteRenderer = _characterView.SpriteRenderer;
-        _spriteAnimator.StartAnimation(_spriteRenderer, Track.run, true, 20);
-
         _paralaxManager = new ParalaxManager(_camera.transform, _backGround);
+
+        _mainHeroWalker = new MainHeroWalker(_characterView, _spriteAnimator);
+
+        _aimingMuzzle = new AimingMuzzle(_muzzleTransform, _characterView.transform);
+        _bulletsEmitter = new BulletsEmitter(_bullets, _muzzleTransform);
     }
 
     private void Update()
@@ -38,10 +46,9 @@ public class Lessons : MonoBehaviour
         //Место обновления всех логических объектов.
         _spriteAnimator.Update();
         _paralaxManager.Update();
-
-        if (Input.GetKeyDown(KeyCode.D))
-            _camera.transform.position = new Vector3(_camera.transform.position.x + 0.5f, _camera.transform.position.y, _camera.transform.position.z);
-
+        _mainHeroWalker.Update();
+        _aimingMuzzle.Update();
+        _bulletsEmitter.Update();
     }
 
     private void FixedUpdate()

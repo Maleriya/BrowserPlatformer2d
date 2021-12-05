@@ -17,7 +17,7 @@ public class SpriteAnimator : IDisposable
         {
             if (Sleeps) return;
             Counter += Time.deltaTime * Speed;
-            Debug.Log($"Counter {Counter}");
+            //Debug.Log($"Counter {Counter}");
             if (Loop)
             {
                 while (Counter > Sprites.Count)
