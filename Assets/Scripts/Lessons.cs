@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Lessons : MonoBehaviour
@@ -13,47 +14,62 @@ public class Lessons : MonoBehaviour
     private Transform _backGround;
     [SerializeField]
     private CharacterView _characterView;
-    private MainHeroWalker _mainHeroWalker;
+    private MainHeroPhysicsWalker _mainHeroWalker;
     [SerializeField]
     private Transform _muzzleTransform;
     [SerializeField]
-    private System.Collections.Generic.List<BulletView> _bullets;
+    private Transform _muzzleEmitterTransform;
+    [SerializeField]
+    private List<BulletView> _bullets;
     private AimingMuzzle _aimingMuzzle;
-    private BulletsEmitter _bulletsEmitter;
+    private BulletsEmitter _bulletsEmitter;   
+    [SerializeField]
+    private List<LevelObjectView> _coins;
+    [SerializeField]
+    private List<LevelObjectView> _deathZones;
     //Ссылки на логические объекты, которые мы кешируем, чтобы потом использовать:
     //например, менеджер анимаций или менеджер параллакса, плюс ссылки на загруженные ресурсы.
-    private SpriteAnimator _spriteAnimator;
+    private SpriteAnimator _spriteAnimatorPlayer;
     private ParalaxManager _paralaxManager;
+    private SpriteAnimator _spriteAnimatorCoins;
+    private CoinsManager _coinsManager;
+    private LevelCompleteManager _levelCompleteManager;
 
     private void Start()
     {
         SpriteAnimationsConfig config = Resources.Load<SpriteAnimationsConfig>("SpriteAnimationsCnfg");
+        SpriteAnimationsConfig configCoin = Resources.Load<SpriteAnimationsConfig>("SpriteAnimationsCnfgCoin");
         //Место загрузки ресурсов.
 
-        _spriteAnimator = new SpriteAnimator(config);
+        _spriteAnimatorPlayer = new SpriteAnimator(config);
+        _spriteAnimatorCoins = new SpriteAnimator(configCoin);
         //Место создания и связывания логических объектов, точка сборки проекта.
 
         _paralaxManager = new ParalaxManager(_camera.transform, _backGround);
 
-        _mainHeroWalker = new MainHeroWalker(_characterView, _spriteAnimator);
+        _mainHeroWalker = new MainHeroPhysicsWalker(_characterView, _spriteAnimatorPlayer);
 
         _aimingMuzzle = new AimingMuzzle(_muzzleTransform, _characterView.transform);
-        _bulletsEmitter = new BulletsEmitter(_bullets, _muzzleTransform);
+        _bulletsEmitter = new BulletsEmitter(_bullets, _muzzleEmitterTransform);
+
+        _coinsManager = new CoinsManager(_characterView, _coins, _spriteAnimatorCoins);
+        _levelCompleteManager = new LevelCompleteManager(_characterView, _deathZones, null);
     }
 
     private void Update()
     {
         //Место обновления всех логических объектов.
-        _spriteAnimator.Update();
+        _spriteAnimatorPlayer.Update();
         _paralaxManager.Update();
-        _mainHeroWalker.Update();
         _aimingMuzzle.Update();
         _bulletsEmitter.Update();
+        _spriteAnimatorCoins.Update();
     }
 
     private void FixedUpdate()
     {
         //Место обновления всех логических объектов, относящихся к физике.
+        _mainHeroWalker.FixedUpdate();
     }
 
     private void OnDestroy()
