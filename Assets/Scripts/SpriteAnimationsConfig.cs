@@ -8,7 +8,8 @@ public enum Track
     run,
     jumpUp,
     jumpDown,
-    blink
+    blink,
+    coinDance
 }
 
 [CreateAssetMenu(fileName = "SpriteAnimationsCnfg", menuName = "Configs/SpriteAnimationsCnfg", order = 1)]
