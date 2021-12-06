@@ -34,6 +34,7 @@ public class Lessons : MonoBehaviour
     private SpriteAnimator _spriteAnimatorCoins;
     private CoinsManager _coinsManager;
     private LevelCompleteManager _levelCompleteManager;
+    private CameraFollow _cameraFollow;
 
     private void Start()
     {
@@ -54,6 +55,8 @@ public class Lessons : MonoBehaviour
 
         _coinsManager = new CoinsManager(_characterView, _coins, _spriteAnimatorCoins);
         _levelCompleteManager = new LevelCompleteManager(_characterView, _deathZones, null);
+
+        _cameraFollow = new CameraFollow(_camera.transform, _characterView.transform);
     }
 
     private void Update()
@@ -70,6 +73,11 @@ public class Lessons : MonoBehaviour
     {
         //Место обновления всех логических объектов, относящихся к физике.
         _mainHeroWalker.FixedUpdate();
+    }
+
+    private void LateUpdate()
+    {
+        _cameraFollow.LateUpdate();
     }
 
     private void OnDestroy()
