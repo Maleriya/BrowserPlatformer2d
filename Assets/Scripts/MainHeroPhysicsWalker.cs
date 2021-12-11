@@ -47,12 +47,12 @@ public class MainHeroPhysicsWalker
             newVelocity = Time.fixedDeltaTime * _walkSpeed *
                (_goSideWay < 0 ? -1 : 1);
         }
-
+        
         _view.Rigidbody2D.velocity = _view.Rigidbody2D.velocity.Change(x: newVelocity);
 
         if (_contactsPoller.IsGrounded 
             && _doJump 
-            && Mathf.Abs(_view.Rigidbody2D.velocity.y) <= _jumpThresh)
+            && Mathf.Abs(_view.Rigidbody2D.velocity.y - _contactsPoller.GroundVelocity.y) <= _jumpThresh)
         {
             _view.Rigidbody2D.AddForce(Vector3.up * _jumpForse);
         }
