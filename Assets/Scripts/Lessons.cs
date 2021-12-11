@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,6 +28,10 @@ public class Lessons : MonoBehaviour
     private List<LevelObjectView> _coins;
     [SerializeField]
     private List<LevelObjectView> _deathZones;
+    [SerializeField]
+    private Seeker _seeker;
+    [SerializeField]
+    private LevelObjectView _flyEnemy;
     //Ссылки на логические объекты, которые мы кешируем, чтобы потом использовать:
     //например, менеджер анимаций или менеджер параллакса, плюс ссылки на загруженные ресурсы.
     private SpriteAnimator _spriteAnimatorPlayer;
@@ -35,6 +40,7 @@ public class Lessons : MonoBehaviour
     private CoinsManager _coinsManager;
     private LevelCompleteManager _levelCompleteManager;
     private CameraFollow _cameraFollow;
+    private FlyEnemyAI _flyEnemyAI;
 
     private void Start()
     {
@@ -57,6 +63,14 @@ public class Lessons : MonoBehaviour
         _levelCompleteManager = new LevelCompleteManager(_characterView, _deathZones, null);
 
         _cameraFollow = new CameraFollow(_camera.transform, _characterView.transform);
+
+        _flyEnemyAI = new FlyEnemyAI(_characterView.transform, _seeker, _flyEnemy.Rigidbody2D);
+        InvokeRepeating("UpdatePath", 0.0f, 0.5f);
+    }
+
+    void UpdatePath()
+    {
+        _flyEnemyAI.UpdatePath();
     }
 
     private void Update()
@@ -73,6 +87,7 @@ public class Lessons : MonoBehaviour
     {
         //Место обновления всех логических объектов, относящихся к физике.
         _mainHeroWalker.FixedUpdate();
+        _flyEnemyAI.FixedUpdate();
     }
 
     private void LateUpdate()
