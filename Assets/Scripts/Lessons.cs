@@ -1,4 +1,5 @@
 using Pathfinding;
+using Platformer.GenerateWorld;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,9 @@ public class Lessons : MonoBehaviour
     private Seeker _seeker;
     [SerializeField]
     private LevelObjectView _flyEnemy;
+    [SerializeField]
+    private GenerateLevelView _generateLevelView;
+  
     //—сылки на логические объекты, которые мы кешируем, чтобы потом использовать:
     //например, менеджер анимаций или менеджер параллакса, плюс ссылки на загруженные ресурсы.
     private SpriteAnimator _spriteAnimatorPlayer;
@@ -41,6 +45,14 @@ public class Lessons : MonoBehaviour
     private LevelCompleteManager _levelCompleteManager;
     private CameraFollow _cameraFollow;
     private FlyEnemyAI _flyEnemyAI;
+    private GeneratorLevelController _generatorLevelController;
+    
+
+    private void Awake()
+    {
+        _generatorLevelController = new GeneratorLevelController(_generateLevelView);
+        _generatorLevelController.Awake();
+    }
 
     private void Start()
     {
@@ -65,7 +77,7 @@ public class Lessons : MonoBehaviour
         _cameraFollow = new CameraFollow(_camera.transform, _characterView.transform);
 
         _flyEnemyAI = new FlyEnemyAI(_characterView.transform, _seeker, _flyEnemy.Rigidbody2D);
-        InvokeRepeating("UpdatePath", 0.0f, 0.5f);
+        InvokeRepeating("UpdatePath", 0.0f, 0.5f);    
     }
 
     void UpdatePath()
@@ -81,6 +93,7 @@ public class Lessons : MonoBehaviour
         _aimingMuzzle.Update();
         _bulletsEmitter.Update();
         _spriteAnimatorCoins.Update();
+        _generatorLevelController.Update(_generateLevelView);
     }
 
     private void FixedUpdate()
