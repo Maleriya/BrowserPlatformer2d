@@ -45,6 +45,9 @@ TagManager:
   - name: Titles
     uniqueID: 921462915
     locked: 0
+  - name: TileMap
+    uniqueID: 637028647
+    locked: 0
   - name: Enemy
     uniqueID: 3253603355
     locked: 0

@@ -65,12 +65,15 @@
     <Compile Include="Assets\Scripts\SpriteAnimationsConfig.cs" />
     <Compile Include="Assets\Scripts\Views\CharacterView.cs" />
     <Compile Include="Assets\Scripts\LevelCompleteManager.cs" />
+    <Compile Include="Assets\Scripts\FlyEnemyAI.cs" />
     <Compile Include="Assets\Scripts\BulletView.cs" />
     <Compile Include="Assets\Scripts\CoinsManager.cs" />
     <Compile Include="Assets\Scripts\Utils.cs" />
     <Compile Include="Assets\Scripts\BulletsEmitter.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
-    <Compile Include="Assets\Scripts\FlyEnemyAI.cs" />
+    <Compile Include="Assets\Scripts\GenerateWorld\GenerateLevelView.cs" />
+    <Compile Include="Assets\Scripts\GenerateWorld\GeneratorLevelController.cs" />
+    <Compile Include="Assets\Scripts\GenerateWorld\MarchingSquaresGeneratorLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -295,11 +298,11 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.17f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
       <HintPath>Assets\AstarPathfindingProject\Plugins\DotNetZip\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.17f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -738,17 +741,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
-      <Project>{377F5A86-F197-B50E-6C05-D6FD86E291C6}</Project>
-      <Name>AstarPathfindingProjectEditor</Name>
+    <ProjectReference Include="PackageToolsEditor.csproj">
+      <Project>{F6863EB8-6398-1C5E-FE76-EDE5F6E1C067}</Project>
+      <Name>PackageToolsEditor</Name>
     </ProjectReference>
     <ProjectReference Include="AstarPathfindingProject.csproj">
       <Project>{7578C347-09B8-29B6-884C-19BBE004CA09}</Project>
       <Name>AstarPathfindingProject</Name>
     </ProjectReference>
-    <ProjectReference Include="PackageToolsEditor.csproj">
-      <Project>{F6863EB8-6398-1C5E-FE76-EDE5F6E1C067}</Project>
-      <Name>PackageToolsEditor</Name>
+    <ProjectReference Include="AstarPathfindingProjectEditor.csproj">
+      <Project>{377F5A86-F197-B50E-6C05-D6FD86E291C6}</Project>
+      <Name>AstarPathfindingProjectEditor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
